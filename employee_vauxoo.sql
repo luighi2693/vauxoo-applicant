@@ -15,9 +15,13 @@ CREATE TABLE employee
   first_name VARCHAR (50) NOT NULL,
   last_name VARCHAR (50) NOT NULL,
   id_department serial NOT NULL,
+  boos integer,
   CONSTRAINT employee_id_department_fkey FOREIGN KEY (id_department)
       REFERENCES employee_department (id) MATCH SIMPLE
-      ON UPDATE CASCADE ON DELETE CASCADE
+      ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT boos FOREIGN KEY (boos)
+      REFERENCES employee (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
 INSERT INTO employee_department(name, description)
@@ -41,14 +45,14 @@ INSERT INTO employee_department(name, description)
 INSERT INTO employee(first_name, last_name, id_department)
     VALUES ('luis','Rodriguez',1);
 
-INSERT INTO employee(first_name, last_name, id_department)
-    VALUES ('Alex','Mata',2);
+INSERT INTO employee(first_name, last_name, id_department, boos)
+    VALUES ('Alex','Mata',2,1);
 
-INSERT INTO employee(first_name, last_name, id_department)
-    VALUES ('Juan','Villanueva',3);
+INSERT INTO employee(first_name, last_name, id_department, boos)
+    VALUES ('Juan','Villanueva',3,1);
 
-INSERT INTO employee(first_name, last_name, id_department)
-    VALUES ('Patricia','Matheus',4);
+INSERT INTO employee(first_name, last_name, id_department, boos)
+    VALUES ('Patricia','Matheus',4,1);
 
 CREATE TABLE employee_hobby (
 	id serial NOT NULL,
