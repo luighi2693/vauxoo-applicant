@@ -18,7 +18,7 @@ class PrimeClass(object):
         else:
             isPrime = True
 
-        div = 2
+        div =  2
         while isPrime and div < num_int:
             if num_int % div == 0:
                 isPrime = False
