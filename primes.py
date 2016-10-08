@@ -1,16 +1,27 @@
 """
-Your module documentation here
+numbers prime module
 """
 
 
 class PrimeClass(object):
     """
-    Your class documentation here
+    prime number class
     """
 
     def is_prime(self, num_int):
         """
-        Your method documentation here
+        verify if a number is prime
         """
-        # your primes code here
-        return "not implement yet"  # Remove this dummy line
+       
+        if num_int < 2:
+            isPrime = False
+        else:
+            isPrime = True
+
+        div = 2
+        while isPrime and div < num_int:
+            if num_int % div == 0:
+                isPrime = False
+            div = div + 1
+
+        return isPrime
