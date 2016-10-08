@@ -20,9 +20,6 @@ CREATE TABLE employee
       ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE employee_hobby (
-);
-
 INSERT INTO employee_department(name, description)
     VALUES ('System','System department');
 
@@ -35,7 +32,7 @@ INSERT INTO employee_department(name, description)
 INSERT INTO employee_department(name, description)
     VALUES ('production','production department');
 
-INSERT INTO employee_department(name)
+INSERT INTO employee_department(name, description)
     VALUES ('test', 'test department');
 
 INSERT INTO employee_department(name, description)
@@ -53,6 +50,57 @@ INSERT INTO employee(first_name, last_name, id_department)
 INSERT INTO employee(first_name, last_name, id_department)
     VALUES ('Patricia','Matheus',4);
 
+CREATE TABLE employee_hobby (
+	id serial NOT NULL,
+  name VARCHAR(50) NOT NULL,
+  description VARCHAR(200),
+  CONSTRAINT employee_hobby_pkey PRIMARY KEY (id)
+);
 
+CREATE TABLE employee_has_hobby
+(
+  id_hobby serial NOT NULL,
+  id_employee serial NOT NULL,
+  CONSTRAINT employee_has_hobby_pkey PRIMARY KEY (id_hobby, id_employee),
+  CONSTRAINT employee_has_hobby_id_employee_fkey FOREIGN KEY (id_employee)
+      REFERENCES employee (id) MATCH SIMPLE
+      ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT employee_has_hobby_id_hobby_fkey FOREIGN KEY (id_hobby)
+      REFERENCES employee_hobby (id) MATCH SIMPLE
+      ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+INSERT INTO employee_hobby(name, description)
+    VALUES ('basketball','play basketball');
+
+INSERT INTO employee_hobby(name, description)
+    VALUES ('programming', 'programming with a tecnology');
+
+INSERT INTO employee_hobby(name, description)
+    VALUES ('run', 'run in the park');
+
+INSERT INTO employee_has_hobby(id_hobby, id_employee)
+    VALUES (1, 3);
+
+INSERT INTO employee_has_hobby(id_hobby, id_employee)
+    VALUES (1, 2);
+
+INSERT INTO employee_has_hobby(id_hobby, id_employee)
+    VALUES (2, 4);
+
+INSERT INTO employee_has_hobby(id_hobby, id_employee)
+    VALUES (3, 3);
+
+INSERT INTO employee_has_hobby(id_hobby, id_employee)
+    VALUES (2, 1);
+
+INSERT INTO employee_has_hobby(id_hobby, id_employee)
+    VALUES (3, 2);
+
+INSERT INTO employee_has_hobby(id_hobby, id_employee)
+    VALUES (3, 1);
+
+INSERT INTO employee_has_hobby(id_hobby, id_employee)
+    VALUES (2, 2);
 
 -- ...
